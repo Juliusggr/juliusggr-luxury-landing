@@ -78,10 +78,19 @@ function boot() {
 
   function setMenu(open: boolean) {
     if (!menu || !menuButton) return;
-    menu.hidden = !open;
+    if (open) menu.hidden = false;
     menuButton.setAttribute("aria-expanded", open ? "true" : "false");
     menuButton.setAttribute("aria-label", open ? (lang() === "en" ? "Close menu" : "Cerrar menú") : lang() === "en" ? "Open menu" : "Abrir menú");
-    if (open) menu.querySelector<HTMLElement>("a, button")?.focus();
+    requestAnimationFrame(() => menu.classList.toggle("is-open", open));
+    if (!open) {
+      const hide = () => {
+        if (!menu.classList.contains("is-open")) menu.hidden = true;
+      };
+      menu.addEventListener("transitionend", hide, { once: true });
+      window.setTimeout(hide, 560);
+    } else {
+      menu.querySelector<HTMLElement>("[data-menu-close]")?.focus();
+    }
   }
 
   function visibleActions() {
