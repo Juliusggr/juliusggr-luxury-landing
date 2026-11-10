@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroShowreel from "../components/HeroShowreel.astro";
+import EditorialAbout from "../components/EditorialAbout.astro";
+import Marquee from "../components/Marquee.astro";
+import FeaturedProjects from "../components/FeaturedProjects.astro";
+import MoreProjectsList from "../components/MoreProjectsList.astro";
+import TerracottaFooter from "../components/TerracottaFooter.astro";
+import { moreProjects, projects, site } from "../data/site";
+
+const featuredRepos = new Set(projects.filter((project) => project.featured).map((project) => project.repo));
+let repos = [...moreProjects];
+
+try {
+  const response = await fetch(`https://api.github.com/users/${site.githubUser}/repos?per_page=100&sort=updated`, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      "User-Agent": "julio-cesar-portfolio",
+    },
+  });
+  if (response.ok) {
+    const data = (await response.json()) as { name: string; html_url: string; fork: boolean }[];
+    const remote = data
+      .filter((repo) => !repo.fork && !featuredRepos.has(repo.name))
+      .map((repo) => ({ name: repo.name, href: repo.html_url }));
+    const seen = new Set(repos.map((repo) => repo.href));
+    for (const repo of remote) {
+      if (!seen.has(repo.href)) repos.push(repo);
+    }
+  }
+} catch {
+  repos = [...moreProjects];
+}
+---
+
+<Layout>
+  <main>
+    <HeroShowreel />
+    <EditorialAbout />
+    <Marquee />
+    <FeaturedProjects />
+    <MoreProjectsList repos={repos} />
+    <TerracottaFooter />
+  </main>
+</Layout>

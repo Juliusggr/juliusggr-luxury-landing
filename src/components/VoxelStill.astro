@@ -1,0 +1,79 @@
+---
+interface Props {
+  variant?: "day" | "dusk";
+}
+
+const { variant = "day" } = Astro.props;
+
+type Tone = "leaf" | "clay" | "paper" | "mint";
+
+const palette: Record<Tone, [string, string, string]> = {
+  leaf: ["#2f8f5b", "#0e3b28", "#1c6b42"],
+  clay: ["#e2a45c", "#c84b11", "#9a3c10"],
+  paper: ["#f4f1ea", "#c8c1b3", "#a49e91"],
+  mint: ["#86efac", "#166534", "#4ade80"],
+};
+
+const columns: { x: number; y: number; h: number; tone: Tone }[] = [];
+for (let y = 0; y < 9; y++) {
+  for (let x = 0; x < 11; x++) {
+    const ridge = 5 - Math.abs(x - 4) * 0.65 - Math.abs(y - 3) * 0.8;
+    const h = Math.max(1, Math.round(ridge + ((x * 5 + y * 3) % 3) * 0.35));
+    let tone: Tone = "leaf";
+    if ((x + y * 2) % 8 === 0) tone = "clay";
+    if (x === 6 && y === 2) tone = "paper";
+    if (variant === "dusk" && x === 4 && y === 3) tone = "mint";
+    if (variant === "day" && x === 3 && y === 4) tone = "clay";
+    columns.push({ x, y, h: variant === "dusk" ? Math.max(1, h - 1) : h, tone });
+  }
+}
+
+const w = 70;
+const depth = 38;
+const originX = 220;
+const originY = 210;
+
+const faces: { points: string; fill: string; order: number }[] = [];
+
+for (const col of columns) {
+  for (let level = 1; level <= col.h; level++) {
+    const tone = level === col.h ? col.tone : "leaf";
+    const [top, left, right] = palette[tone];
+    const cx = originX + (col.x - col.y) * w;
+    const cy = originY + (col.x + col.y) * (w * 0.5) - level * depth;
+    const front = `${cx},${cy}`;
+    const rightPt = `${cx + w},${cy - w * 0.5}`;
+    const back = `${cx},${cy - w}`;
+    const leftPt = `${cx - w},${cy - w * 0.5}`;
+    const frontD = `${cx},${cy + depth}`;
+    const rightD = `${cx + w},${cy - w * 0.5 + depth}`;
+    const leftD = `${cx - w},${cy - w * 0.5 + depth}`;
+    const order = col.x + col.y + level * 0.01;
+    faces.push({ points: `${leftPt} ${front} ${frontD} ${leftD}`, fill: left, order });
+    faces.push({ points: `${front} ${rightPt} ${rightD} ${frontD}`, fill: right, order: order + 0.001 });
+    faces.push({ points: `${leftPt} ${back} ${rightPt} ${front}`, fill: top, order: order + 0.002 });
+  }
+}
+
+faces.sort((a, b) => a.order - b.order);
+
+const sky = variant === "dusk" ? ["#07140f", "#123528", "#4ade80"] : ["#071610", "#1a4a34", "#c84b11"];
+const uid = `${variant}-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<svg viewBox="0 0 800 640" class="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id={`sky-${uid}`} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color={sky[1]} />
+      <stop offset="58%" stop-color={sky[0]} />
+      <stop offset="100%" stop-color={sky[0]} />
+    </linearGradient>
+    <radialGradient id={`glow-${uid}`} cx="70%" cy="18%" r="40%">
+      <stop offset="0%" stop-color={sky[2]} stop-opacity="0.55" />
+      <stop offset="100%" stop-color={sky[2]} stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="640" fill={`url(#sky-${uid})`} />
+  <rect width="800" height="640" fill={`url(#glow-${uid})`} />
+  {faces.map((face) => <polygon points={face.points} fill={face.fill} />)}
+</svg>

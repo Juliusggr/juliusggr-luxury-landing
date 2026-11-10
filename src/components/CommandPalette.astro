@@ -1,0 +1,67 @@
+---
+import { site } from "../data/site";
+---
+
+<div data-palette hidden class="fixed inset-0 z-[80] bg-[#0b261c]/80">
+  <div
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="palette-title"
+    class="mx-auto mt-[14vh] w-[min(32rem,calc(100%-2rem))] overflow-hidden rounded-2xl bg-[#f4f1ea] text-[#0b261c] shadow-[0_30px_80px_rgb(0_0_0/0.35)]"
+    data-palette-panel
+  >
+    <h2 id="palette-title" class="sr-only">
+      <span data-lang="es">Paleta de comandos</span>
+      <span data-lang="en">Command palette</span>
+    </h2>
+    <label class="block border-b border-[#0b261c]/10">
+      <span class="sr-only">
+        <span data-lang="es">Buscar acción</span>
+        <span data-lang="en">Search actions</span>
+      </span>
+      <input
+        id="command-input"
+        data-palette-input
+        type="text"
+        autocomplete="off"
+        class="w-full bg-transparent px-5 py-4 font-mono text-sm tracking-wide text-[#0b261c] outline-none placeholder:text-[#0b261c]/45"
+        data-ph-es="Buscar una acción"
+        data-ph-en="Search an action"
+        placeholder="Buscar una acción"
+      />
+    </label>
+    <div class="max-h-[50vh] overflow-auto p-2" data-palette-list>
+      <button type="button" data-action="copy-email" data-keywords="email correo copy copiar mail" class="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left font-mono text-[11px] uppercase tracking-[0.16em]">
+        <span data-lang="es">Copiar email</span>
+        <span data-lang="en">Copy email</span>
+      </button>
+      <button type="button" data-action="download-cv" data-keywords="cv pdf descargar download curriculum" class="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left font-mono text-[11px] uppercase tracking-[0.16em]">
+        <span data-lang="es">Descargar CV</span>
+        <span data-lang="en">Download CV</span>
+      </button>
+      <button type="button" data-action="open-github" data-keywords="github repositorio repo" class="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left font-mono text-[11px] uppercase tracking-[0.16em]">
+        <span>GitHub</span>
+        <span class="normal-case tracking-normal text-[#0b261c]/50">{site.githubUser}</span>
+      </button>
+      {
+        site.linkedin && (
+          <button type="button" data-action="open-linkedin" data-keywords="linkedin" class="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left font-mono text-[11px] uppercase tracking-[0.16em]">
+            LinkedIn
+          </button>
+        )
+      }
+      <button type="button" data-action="toggle-lang" data-keywords="idioma language español english es en" class="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left font-mono text-[11px] uppercase tracking-[0.16em]">
+        <span data-lang="es">Cambiar idioma</span>
+        <span data-lang="en">Switch language</span>
+      </button>
+      <button type="button" data-action="toggle-theme" data-keywords="tema theme dark light oscuro claro" class="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left font-mono text-[11px] uppercase tracking-[0.16em]">
+        <span data-lang="es">Alternar tema</span>
+        <span data-lang="en">Toggle theme</span>
+      </button>
+      <p data-palette-empty hidden class="px-3 py-6 font-mono text-[11px] uppercase tracking-[0.16em] text-[#0b261c]/50">
+        <span data-lang="es">Sin resultados</span>
+        <span data-lang="en">No matches</span>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { site } from "../data/site";
+import "../styles/global.css";
+import HeaderPopover from "../components/HeaderPopover.astro";
+import CommandPalette from "../components/CommandPalette.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = site.title.es, description = site.description.es } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0B261C" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/julio.jpg" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <ClientRouter />
+    <script is:inline>
+      (function () {
+        try {
+          var theme = localStorage.getItem("theme");
+          var lang = localStorage.getItem("lang");
+          if (theme === "light" || theme === "dark") {
+            document.documentElement.setAttribute("data-theme", theme);
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute("content", theme === "light" ? "#F4F1EA" : "#0B261C");
+          }
+          if (lang === "en" || lang === "es") document.documentElement.lang = lang;
+        } catch (error) {}
+      })();
+    </script>
+  </head>
+  <body class="antialiased">
+    <a
+      href="#top"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-[#f4f1ea] focus:px-3 focus:py-2 focus:text-[#0b261c]"
+    >
+      <span data-lang="es">Saltar al contenido</span>
+      <span data-lang="en">Skip to content</span>
+    </a>
+    <div class="pointer-events-none fixed inset-0 z-40 grid grid-cols-4" aria-hidden="true">
+      <span class="border-r border-l border-[var(--line)]"></span>
+      <span class="border-r border-[var(--line)]"></span>
+      <span class="border-r border-[var(--line)]"></span>
+      <span class="border-r border-[var(--line)]"></span>
+    </div>
+    <HeaderPopover />
+    <slot />
+    <CommandPalette />
+    <div id="cursor-label" aria-hidden="true">
+      <span data-lang="es">Ver proyecto</span>
+      <span data-lang="en">View project</span>
+    </div>
+    <div id="toast" role="status">
+      <span data-lang="es">Correo copiado</span>
+      <span data-lang="en">Email copied</span>
+    </div>
+    <script>
+      import "../scripts/client.ts";
+    </script>
+  </body>
+</html>

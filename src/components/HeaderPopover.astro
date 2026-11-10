@@ -1,0 +1,82 @@
+---
+import { site } from "../data/site";
+---
+
+<header class="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-5 py-5 md:px-8">
+  <a href="#top" class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--fg)]">
+    {site.name}
+  </a>
+  <div class="relative">
+    <button
+      type="button"
+      class="menu-btn grid size-11 place-items-center rounded-full"
+      data-menu-button
+      aria-expanded="false"
+      aria-controls="site-menu"
+      data-label-es="Abrir menú"
+      data-label-en="Open menu"
+      aria-label="Abrir menú"
+    >
+      <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true">
+        <path d="M5 9.5h14M5 14.5h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <div
+      id="site-menu"
+      data-menu
+      hidden
+      class="absolute right-0 top-[calc(100%+0.7rem)] w-[min(16.5rem,calc(100vw-2rem))] rounded-2xl bg-[#f4f1ea] p-2 text-[#0b261c] shadow-[0_22px_50px_rgb(0_0_0/0.28)]"
+    >
+      <div class="flex justify-end px-1 pt-1">
+        <button
+          type="button"
+          data-menu-close
+          class="grid size-8 place-items-center rounded-full"
+          data-label-es="Cerrar menú"
+          data-label-en="Close menu"
+          aria-label="Cerrar menú"
+        >
+          <svg viewBox="0 0 24 24" class="size-3.5" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="flex flex-col px-3 pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
+        <a class="py-2.5 hover:text-[#166534]" href="#proyectos">
+          <span data-lang="es">Proyectos</span>
+          <span data-lang="en">Projects</span>
+        </a>
+        <a class="py-2.5 hover:text-[#166534]" href="#enfoque">
+          <span data-lang="es">Enfoque</span>
+          <span data-lang="en">Approach</span>
+        </a>
+        <a class="py-2.5 hover:text-[#166534]" data-lang="es" href="/cv-es.pdf" download>
+          Descargar CV (PDF)
+        </a>
+        <a class="py-2.5 hover:text-[#166534]" data-lang="en" href="/cv-en.pdf" download>
+          Download CV (PDF)
+        </a>
+      </nav>
+      <div class="mx-3 border-t border-[#0b261c]/10"></div>
+      <div class="flex items-center gap-3 px-3 py-3 font-mono text-[11px] uppercase tracking-[0.18em]">
+        <button type="button" data-set-lang="es">ES</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-set-lang="en">EN</button>
+      </div>
+      <div class="flex items-center gap-3 px-3 pb-3 font-mono text-[11px] uppercase tracking-[0.18em]">
+        <button type="button" data-set-theme="dark">Dark</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-set-theme="light">Light</button>
+      </div>
+      <button
+        type="button"
+        data-open-palette
+        class="mx-2 mb-2 flex w-[calc(100%-1rem)] items-center justify-between rounded-xl px-3 py-3 text-left font-mono text-[11px] uppercase tracking-[0.18em] hover:bg-[#0b261c] hover:text-[#f4f1ea]"
+      >
+        <span data-lang="es">Paleta</span>
+        <span data-lang="en">Palette</span>
+        <kbd class="font-mono text-[10px] tracking-[0.14em]">Ctrl K</kbd>
+      </button>
+    </div>
+  </div>
+</header>

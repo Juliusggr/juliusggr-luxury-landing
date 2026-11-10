@@ -1,0 +1,61 @@
+---
+import { projects } from "../data/site";
+import VoxelStill from "./VoxelStill.astro";
+
+const featured = projects.filter((project) => project.featured);
+const single = featured.length < 2;
+---
+
+<section class="px-3 pb-8 md:px-3" aria-labelledby="featured-label">
+  <h2 id="featured-label" class="sr-only">
+    <span data-lang="es">Proyectos destacados</span>
+    <span data-lang="en">Featured projects</span>
+  </h2>
+  <div class:list={["grid gap-x-4 gap-y-16", single ? "grid-cols-1" : "md:grid-cols-2"]}>
+    {
+      featured.map((project) => (
+        <article>
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
+            data-cursor
+            class:list={[
+              "relative block overflow-hidden rounded-[1.15rem] bg-[#071610]",
+              single ? "h-[70vw] min-h-[18rem] md:h-[52vh]" : "h-[68vw] min-h-[16rem] md:h-[30vw]",
+            ]}
+            data-label-es={`${project.title}, abrir en GitHub`}
+            data-label-en={`${project.title}, open on GitHub`}
+            aria-label={`${project.title}, abrir en GitHub`}
+          >
+            <VoxelStill variant="day" />
+          </a>
+          <div class="mt-5 grid gap-4 px-2 md:grid-cols-2 md:px-3">
+            <div>
+              <a href={project.href} target="_blank" rel="noreferrer" class="group inline-flex items-center gap-3">
+                <h3 class="font-serif text-[2rem] leading-none tracking-tight">{project.title}</h3>
+                <span class="circle-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" class="size-3.5">
+                    <path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                {project.stack.es.map((label, index) => (
+                  <li class="rounded-full border border-[var(--line-strong)] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                    <span data-lang="es">{label}</span>
+                    <span data-lang="en">{project.stack.en[index]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p class="max-w-[36ch] text-sm leading-relaxed text-[var(--muted)] md:pt-1">
+              <span data-lang="es">{project.description.es}</span>
+              <span data-lang="en">{project.description.en}</span>
+            </p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

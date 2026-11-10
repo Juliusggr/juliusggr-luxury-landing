@@ -1,0 +1,21 @@
+---
+const repeats = [0, 1, 2, 3, 4, 5, 6, 7];
+---
+
+<section id="proyectos" class="marquee scroll-mt-24 overflow-hidden py-8" aria-label="Proyectos">
+  <div class="marquee-track font-serif text-[clamp(3.4rem,8.5vw,6rem)] leading-[1.15] tracking-tight">
+    {
+      [0, 1].map((copy) => (
+        <p class="pr-2" aria-hidden={copy === 1 ? "true" : undefined}>
+          {repeats.map(() => (
+            <span>
+              <span class="star" aria-hidden="true">*</span>
+              <span data-lang="es">PROYECTOS</span>
+              <span data-lang="en">PROJECTS</span>
+            </span>
+          ))}
+        </p>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,94 @@
+---
+const cards = [
+  {
+    esTitle: "Desarrollo End-to-End",
+    enTitle: "End-to-end development",
+    esBody: "De la interfaz al backend y al despliegue real.",
+    enBody: "From the interface to the backend and a real deploy.",
+  },
+  {
+    esTitle: "Formación Autodidacta",
+    enTitle: "Self-directed practice",
+    esBody: "Aprendizaje continuo desde la documentación y la ingeniería práctica.",
+    enBody: "Continuous learning from the docs and from building.",
+  },
+  {
+    esTitle: "Aprendiendo Ahora",
+    enTitle: "Learning now",
+    esBody: "Profundizando en sistemas y rendimiento con Rust.",
+    enBody: "Going deeper on systems and performance with Rust.",
+  },
+  {
+    esTitle: "Calidad Técnica",
+    enTitle: "Technical quality",
+    esBody: "Lighthouse 100/100, Zero-JS por defecto en Astro y optimización AVIF/WebP.",
+    enBody: "Lighthouse 100/100, zero JS by default in Astro, and AVIF/WebP.",
+  },
+];
+
+const stack = ["TypeScript", "React", "Astro", "Tailwind CSS", "Rust", "Node.js", "Git/GitHub", "CSS Moderno"];
+---
+
+<section id="enfoque" class="scroll-mt-24 pb-8">
+  <div class="grid grid-cols-1 items-end gap-y-12 md:grid-cols-4">
+    <div class="px-5 md:col-span-3 md:px-8">
+      <h2 class="sr-only">
+        <span data-lang="es">Sobre mí</span>
+        <span data-lang="en">About</span>
+      </h2>
+      <p class="bio font-serif text-[clamp(1.7rem,2.35vw,2.45rem)] leading-[1.28] tracking-tight">
+        <span data-lang="es">
+          Desarrollo aplicaciones web y de escritorio de extremo a extremo — desde interfaces reactivas con <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">TypeScript</a>, <a href="https://react.dev/" target="_blank" rel="noreferrer">React</a> y <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a>, hasta herramientas de alto rendimiento con <a href="https://www.rust-lang.org/" target="_blank" rel="noreferrer">Rust</a> y <a href="https://nodejs.org/" target="_blank" rel="noreferrer">Node.js</a>. Con una sólida formación autodidacta guiada por arquitectura limpia y código en producción.
+        </span>
+        <span data-lang="en">
+          I build web and desktop applications end to end — from reactive interfaces with <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">TypeScript</a>, <a href="https://react.dev/" target="_blank" rel="noreferrer">React</a>, and <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a>, to high-performance tools with <a href="https://www.rust-lang.org/" target="_blank" rel="noreferrer">Rust</a> and <a href="https://nodejs.org/" target="_blank" rel="noreferrer">Node.js</a>. A self-directed practice grounded in clean architecture and code that ships.
+        </span>
+      </p>
+    </div>
+    <div class="px-5 md:px-8">
+      <img
+        src="/julio.jpg"
+        width="900"
+        height="1125"
+        alt="Julio Cesar en un tren, de perfil, con chaqueta ocre y un café, mirando por la ventana."
+        data-alt-es="Julio Cesar en un tren, de perfil, con chaqueta ocre y un café, mirando por la ventana."
+        data-alt-en="Julio Cesar on a train, in profile, wearing an ochre jacket and holding a coffee, looking out the window."
+        class="portrait ml-auto aspect-[4/5] w-full max-w-[18rem] rounded-xl object-cover grayscale contrast-110 brightness-90 transition-all duration-500 hover:grayscale-0 hover:brightness-100"
+      />
+    </div>
+  </div>
+
+  <div class="mt-24 grid grid-cols-1 border-t border-[var(--line)] md:grid-cols-4" data-focus-row>
+    {
+      cards.map((card, index) => (
+        <button type="button" class:list={["focus-card px-5 py-8 md:px-8", index === 0 && "is-active"]} data-focus-card>
+          <span class="block font-serif text-[1.7rem] leading-[1.15] tracking-tight">
+            <span data-lang="es">{card.esTitle}</span>
+            <span data-lang="en">{card.enTitle}</span>
+          </span>
+          <span class="mt-4 block max-w-[28ch] font-sans text-sm leading-relaxed text-[var(--muted)]">
+            <span data-lang="es">{card.esBody}</span>
+            <span data-lang="en">{card.enBody}</span>
+          </span>
+        </button>
+      ))
+    }
+  </div>
+
+  <ul class="mt-20 grid grid-cols-2 border-t border-[var(--line)] md:grid-cols-4">
+    {
+      stack.map((name) => (
+        <li class="flex h-28 items-center px-5 font-sans text-[1.2rem] tracking-tight md:h-36 md:px-8 md:text-[1.45rem]">
+          {name === "CSS Moderno" ? (
+            <>
+              <span data-lang="es">CSS Moderno</span>
+              <span data-lang="en">Modern CSS</span>
+            </>
+          ) : (
+            name
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</section>

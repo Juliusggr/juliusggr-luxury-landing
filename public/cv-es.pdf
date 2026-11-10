@@ -1,0 +1,86 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1203 >>
+stream
+0.784 0.294 0.067 RG
+72 700 m 540 700 l S
+BT
+/F1 28 Tf
+1 0 0 1 72 740 Tm
+(Julio Cesar) Tj
+/F2 13 Tf
+1 0 0 1 72 708 Tm
+(Desarrollador Web y Software) Tj
+/F2 11 Tf
+1 0 0 1 72 674 Tm
+(Juliusggrdev@proton.me) Tj
+/F2 11 Tf
+1 0 0 1 72 658 Tm
+(github.com/Juliusggr) Tj
+/F1 14 Tf
+1 0 0 1 72 620 Tm
+(Pr\341ctica) Tj
+/F2 12 Tf
+1 0 0 1 72 596 Tm
+(Desarrollo aplicaciones web y de escritorio de extremo a extremo,) Tj
+/F2 12 Tf
+1 0 0 1 72 580 Tm
+(desde interfaces reactivas con TypeScript, React y Astro hasta) Tj
+/F2 12 Tf
+1 0 0 1 72 564 Tm
+(herramientas de alto rendimiento con Rust y Node.js.) Tj
+/F2 12 Tf
+1 0 0 1 72 540 Tm
+(Formaci\363n autodidacta guiada por arquitectura limpia y c\363digo) Tj
+/F2 12 Tf
+1 0 0 1 72 524 Tm
+(en producci\363n. Disponible para oportunidades laborales.) Tj
+/F1 14 Tf
+1 0 0 1 72 486 Tm
+(Proyecto) Tj
+/F2 12 Tf
+1 0 0 1 72 462 Tm
+(Fablecraft \227 sandbox de v\363xeles en el navegador, desde cero,) Tj
+/F2 12 Tf
+1 0 0 1 72 446 Tm
+(sin librer\355as y sin assets externos.) Tj
+/F2 12 Tf
+1 0 0 1 72 428 Tm
+(https://github.com/Juliusggr/fablecraft) Tj
+/F1 14 Tf
+1 0 0 1 72 390 Tm
+(Stack) Tj
+/F2 12 Tf
+1 0 0 1 72 366 Tm
+(TypeScript, React, Astro, Tailwind CSS, Rust, Node.js, Git.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000001506 00000 n 
+0000001577 00000 n 
+trailer << /Size 7 /Root 1 0 R >>
+startxref
+1649
+%%EOF

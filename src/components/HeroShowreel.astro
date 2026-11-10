@@ -1,0 +1,65 @@
+---
+import { projects } from "../data/site";
+import VoxelStill from "./VoxelStill.astro";
+
+const project = projects.find((item) => item.featured) ?? projects[0];
+---
+
+<section id="top" class="hero-pin" data-hero>
+  <div class="hero-sticky">
+    <div class="hero-copy grid grid-cols-4">
+      <div class="col-span-4 px-5 pt-28 md:col-span-3 md:px-8 md:pt-32">
+        <h1 class="font-serif text-[clamp(2.8rem,4.7vw,5.25rem)] leading-[1.08] tracking-tight text-balance">
+          <span data-lang="es">
+            Desarrollador Web &amp; Software dedicado a crear aplicaciones <em>rápidas</em>, <em>escalables</em> y con <em>propósito</em>.
+          </span>
+          <span data-lang="en">
+            Web &amp; Software developer devoted to building applications that are <em>fast</em>, <em>scalable</em>, and <em>purposeful</em>.
+          </span>
+        </h1>
+        <p class="mt-8 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--muted)]">
+          <span class="relative flex size-2" aria-hidden="true">
+            <span class="absolute inline-flex size-full animate-ping rounded-full bg-[#4ade80] opacity-70"></span>
+            <span class="relative size-2 rounded-full bg-[#4ade80]"></span>
+          </span>
+          <span data-lang="es">Disponible para oportunidades laborales</span>
+          <span data-lang="en">Open to roles</span>
+        </p>
+      </div>
+    </div>
+
+    {
+      project && (
+        <a
+          class="hero-reel block"
+          href={project.href}
+          target="_blank"
+          rel="noreferrer"
+          data-cursor
+          data-label-es={`${project.title}, abrir en GitHub`}
+          data-label-en={`${project.title}, open on GitHub`}
+          aria-label={`${project.title}, abrir en GitHub`}
+        >
+          <div class="slide is-on" data-slide>
+            <VoxelStill variant="day" />
+          </div>
+          <div class="slide" data-slide>
+            <VoxelStill variant="dusk" />
+          </div>
+          <div class="slide grid place-items-center bg-[#c84b11] px-8 text-[#f4f1ea]" data-slide>
+            <div class="max-w-[14ch] text-center">
+              <p class="font-serif text-[clamp(2.4rem,4vw,4.2rem)] leading-[1.05] tracking-tight">
+                <span data-lang="es">Desde cero.</span>
+                <span data-lang="en">From scratch.</span>
+              </p>
+              <p class="mt-4 font-mono text-[11px] uppercase tracking-[0.18em]">
+                <span data-lang="es">Sin librerías · Sin assets</span>
+                <span data-lang="en">No libraries · No assets</span>
+              </p>
+            </div>
+          </div>
+        </a>
+      )
+    }
+  </div>
+</section>
